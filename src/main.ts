@@ -1,3 +1,5 @@
+require('module-alias/register')
+
 import { NestFactory } from '@nestjs/core';
 
 import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify';

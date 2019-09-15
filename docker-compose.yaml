@@ -1,12 +1,27 @@
 version: '3'
 
 services:
-  example-service:
-    build: .
-    volumes:
-      - .:/app
-      - /app/node_modules
+  # nestjs:
+  #   build: .
+  #   container_name: projectx-backend
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - 3000:3000
+  #     - 9229:9229
+  #   links:
+  #     - postgres
+  #   command: npm run start:dev
+
+  postgres:
+    container_name: projectx-db
+    image: postgres:10-alpine
     ports:
-      - 3000:3000
-      - 9229:9229
-    command: npm run start:dev
+      - '5531:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=toor
+      - POSTGRES_DB=projectx
+    # volumes:
+    #   - ./docker-volumes/postgresql:/var/lib/postgresql/data
