@@ -11,6 +11,7 @@
     "baseUrl": "./src",
     "incremental": true,
     "paths": {
+      "@commons/*": ["commons/*"],
       "@modules/*": ["modules/*"]
     }
   },
