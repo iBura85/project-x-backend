@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
 
-import { IUser } from '@modules/users/interfaces/user.interface';
+import { User } from '@modules/users/interfaces/user.interface';
 
 @Entity('users')
-export class UsersEntity implements IUser {
+@Unique('PhoneAndEmail', ['phone', 'email'])
+export class UsersEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
 

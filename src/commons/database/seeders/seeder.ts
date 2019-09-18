@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { UsersSeeds } from './seeds/users.seeds';
 
 @Injectable()
 export class Seeder {
-  constructor(private readonly usersSeeds: UsersSeeds) {}
+  constructor(
+    private readonly usersSeeds: UsersSeeds,
+    private readonly logger: Logger,
+  ) {}
 
   async seed() {
-    await this.usersSeeds
-      .run()
-      .then(() => console.log('success seed'))
-      .catch(err => console.log(err));
+    try {
+      // заполняет данными таблицу users
+      await this.usersSeeds.run();
+    } catch (err) {
+      throw err;
+    }
   }
 }
