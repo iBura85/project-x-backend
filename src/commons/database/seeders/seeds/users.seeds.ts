@@ -49,7 +49,10 @@ export class UsersSeeds {
           name: 'admin',
           phone: '+79990007777',
           email: 'admin@projectx.ru',
+          verify: true,
           password: await AuthService.hashPassword('admin', 10),
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ] as User[];
     } catch (err) {

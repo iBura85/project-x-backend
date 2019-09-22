@@ -14,6 +14,13 @@ services:
   #     - postgres
   #   command: npm run start:dev
 
+  proxy:
+    container_name: tor-proxy
+    image: dperson/torproxy
+    ports:
+      - '8118:8118'
+      - '9050:9050'
+
   postgres:
     container_name: projectx-db
     image: postgres:10-alpine

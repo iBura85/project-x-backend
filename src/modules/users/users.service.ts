@@ -13,11 +13,27 @@ export class UsersService {
   ) {}
 
   /**
+   * Сохраняет пользователя в БД
+   * @param user объект пользователя
+   */
+  public save(user: User): Promise<User> {
+    return this.usersRepo.save(user);
+  }
+
+  /**
+   * Удаляет пользователя из БД
+   * @param user объект пользователя
+   */
+  public remove(user: User): Promise<User> {
+    return this.usersRepo.remove(user);
+  }
+
+  /**
    * Находит пользователя в БД по телефонному номеру
    * @param phone телефонный номер
    */
   public findOneByPhone(phone: string): Promise<User> {
-    return this.usersRepo.findOne({ where: phone });
+    return this.usersRepo.findOne({ where: { phone } });
   }
 
   /**

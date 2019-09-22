@@ -8,7 +8,11 @@ import { UsersEntity } from '@modules/users/entities/user.entity';
 import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
-  imports: [DatabaseModule, TypeOrmModule.forFeature([UsersEntity]), AuthModule],
+  imports: [
+    DatabaseModule,
+    TypeOrmModule.forFeature([UsersEntity]),
+    AuthModule,
+  ],
   providers: [UsersSeeds, Seeder, Logger],
 })
 export class SeederModule {}

@@ -4,4 +4,7 @@ export interface User {
   readonly phone: string;
   readonly email: string;
   readonly password: string;
+  verify: boolean;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
 }

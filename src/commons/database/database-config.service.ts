@@ -5,6 +5,7 @@ import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
  * Entities
  */
 import { UsersEntity } from '@modules/users/entities/user.entity';
+import { VerifyEntity } from '@modules/auth/verify/verify.entity';
 
 @Injectable()
 export class DatabaseConfigService implements TypeOrmOptionsFactory {
@@ -16,7 +17,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
       username: 'root',
       password: 'toor',
       database: 'projectx',
-      entities: [UsersEntity],
+      entities: [VerifyEntity, UsersEntity],
       synchronize: true,
       logging: 'all',
     };

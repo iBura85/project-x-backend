@@ -1,0 +1,87 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ProjectX",
+		"_postman_id": "fdb2e1a4-8673-c36b-4540-a656ebba9d9b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Пользователи",
+			"description": "",
+			"item": [
+				{
+					"name": "Авторизация",
+					"request": {
+						"url": "http://localhost:3000/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"+79990007777\",\n\t\"password\": \"admin\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Регистрация 1 шаг",
+					"request": {
+						"url": "http://localhost:3000/registration",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AcHJvamVjdHgucnUiLCJwaG9uZSI6Iis3OTk5MDAwNzc3NyIsImlhdCI6MTU2ODgwODYwNywiZXhwIjoxNTk5OTEyNjA3fQ.nE3g83_8WJHbI6EFQIVQYq71jSpwJXNDJmpZqx77Xvs",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"+79990700778\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Регистрация 2 шаг",
+					"request": {
+						"url": "http://localhost:3000/registration/verify",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AcHJvamVjdHgucnUiLCJwaG9uZSI6Iis3OTk5MDAwNzc3NyIsImlhdCI6MTU2ODgwODYwNywiZXhwIjoxNTk5OTEyNjA3fQ.nE3g83_8WJHbI6EFQIVQYq71jSpwJXNDJmpZqx77Xvs",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"+79990700778\",\n\t\"code\": 7390\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
