@@ -24,6 +24,8 @@ export class RegistrationService {
    * 2. Высылает проверочный код
    */
   public async firstStep(dto: InUserRegistrationDto) {
+    let newUser: User = null;
+
     try {
       // создает объект пользователя из полученных данных
       const user: User = plainToClass(UsersEntity, dto);
@@ -32,24 +34,24 @@ export class RegistrationService {
       user.verify = false;
 
       // добавляем пользователя в БД
-      const newUser: User = await this.usersService.save(user);
+      newUser = await this.usersService.save(user);
 
       // генерирует код подтвержения
       const code = this.generateCode();
 
-      try {
-        // отправляем сообщение с кодом
-        await this.telegramService.sendMessage(
-          `Телефон: ${dto.phone} Код: ${code}`,
-        );
+      // отправляем сообщение с кодом
+      await this.telegramService.sendMessage(
+        `Телефон: ${dto.phone} Код: ${code}`,
+      );
 
-        // добавляем объект верификации
-        await this.verifyService.add(newUser.id, code);
-      } catch (err) {
-        // удалем пользователя если возникла ошибка отправки sms кода
-        this.usersService.remove(newUser);
-      }
+      // добавляет объект верификации
+      await this.verifyService.add(newUser.id, code);
     } catch (err) {
+      // если ошибка возникла после создания пользователя
+      if (newUser) {
+        // удалем пользователя
+        await this.usersService.remove(newUser);
+      }
       return err;
     }
   }
