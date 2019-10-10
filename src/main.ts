@@ -7,6 +7,8 @@ import {
   FastifyAdapter,
 } from '@nestjs/platform-fastify';
 
+// import * as useragent from 'express-useragent';
+
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
@@ -16,6 +18,7 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
+  app.setGlobalPrefix('/v1/api');
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3000, '0.0.0.0');

@@ -1,5 +1,7 @@
+import { SessionEntity } from '@modules/auth/sessions';
+
 export interface User {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
   readonly phone: string;
   readonly email: string;

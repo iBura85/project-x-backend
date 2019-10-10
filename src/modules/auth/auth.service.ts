@@ -7,16 +7,14 @@ import { LoggerService } from '@commons/logger/logger.service';
 import { Logger } from '@commons/logger/logger.decorator';
 import { UsersService } from '@modules/users/users.service';
 import { User } from '@modules/users/interfaces/user.interface';
-
-type LoginResult = {
-  access_token: string;
-};
+import { UserAgent } from '@commons/user-agent';
+import { LoginResult } from './interfaces';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersService: UsersService,
     @Logger('AuthService') private readonly logger: LoggerService,
+    private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -78,10 +76,12 @@ export class AuthService {
   }
 
   /**
-   * Генерирует JWT токен для пользователя
+   * Создает клиента и генерирует JWT токен для пользователя
    * @param user
    */
-  async login(user: User): Promise<LoginResult> {
+  async login(user: User, userAgent: UserAgent): Promise<LoginResult> {
+    // необходимо создать новую сессию для пользователя
+
     const payload = {
       sub: user.id,
       name: user.name,

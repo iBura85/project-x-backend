@@ -9,8 +9,8 @@ import { Verify } from './verify.interface';
 
 @Entity('verify-users')
 export class VerifyEntity implements Verify {
-  @PrimaryColumn('int')
-  userId: number;
+  @PrimaryColumn()
+  userId: string;
 
   @Column('int')
   code: number;

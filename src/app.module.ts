@@ -1,20 +1,22 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { DatabaseModule } from '@commons/database/database.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { UsersModule } from '@modules/users/users.module';
 
-import { AppController } from './app.controller';
 import { LoggerModule } from './commons/logger/logger.module';
 import { RegistrationModule } from '@modules/auth/registration/registration.module';
+import { MqttModule } from '@commons/nest-mqtt/mqtt.module';
+import { IoTAgentModule } from '@modules/iot-agent/iot-agent.module';
 
 @Module({
   imports: [
+    // IoTAgentModule,
     AuthModule,
     DatabaseModule,
     UsersModule,
     LoggerModule,
-    RegistrationModule,
+    //RegistrationModule,
   ],
-  controllers: [AppController],
+  // controllers: [AppController],
 })
 export class AppModule {}

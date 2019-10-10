@@ -1,5 +1,5 @@
 export interface Verify {
-  userId: number;
+  userId: string;
   code: number;
   createdAt?: Date;
   updatedAt?: Date;

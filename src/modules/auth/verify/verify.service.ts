@@ -23,7 +23,7 @@ export class VerifyService {
    * @param userId идентификатор пользователя
    * @param code код подверждения
    */
-  add(userId: number, code: number): Promise<Verify> {
+  add(userId: string, code: number): Promise<Verify> {
     const verifyObj: Verify = {
       userId,
       code,

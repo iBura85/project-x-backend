@@ -3,9 +3,16 @@ import { PassportStrategy } from '@nestjs/passport';
 
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 import { User } from '@modules/users/interfaces/user.interface';
 
+/**
+ * Локальная аутентификации стратегия для библиотеки PassportJS
+ * В методе validate() производится проверка логина и пароля
+ *
+ * При успешной аутентификации пользователя в объект Request
+ * добавляет свойсво user, содержащие данные пользователя
+ */
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   /**
