@@ -7,13 +7,15 @@ import { LoggerModule } from './commons/logger/logger.module';
 import { RegistrationModule } from '@modules/auth/registration/registration.module';
 import { MqttModule } from '@commons/nest-mqtt/mqtt.module';
 import { IoTAgentModule } from '@modules/iot-agent/iot-agent.module';
+import { ApiModule } from './api.module';
 
 @Module({
   imports: [
     // IoTAgentModule,
-    AuthModule,
+    //AuthModule,
+    ApiModule,
     DatabaseModule,
-    UsersModule,
+    //UsersModule,
     LoggerModule,
     //RegistrationModule,
   ],

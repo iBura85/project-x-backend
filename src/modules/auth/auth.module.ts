@@ -3,7 +3,7 @@ import { PassportModule } from '@nestjs/passport';
 import { LoggerModule } from '@commons/logger/logger.module';
 import { UsersModule } from '@modules/users/users.module';
 
-import { SessionsModule } from './sessions';
+import { ClientsModule } from '../clients';
 import { LocalStrategy, JwtStrategy } from './strategies';
 
 import { AuthService } from './auth.service';
@@ -20,7 +20,7 @@ import { AuthController } from './auth.controller';
     UsersModule,
     PassportModule,
     LoggerModule.forRoot(),
-    SessionsModule,
+    ClientsModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],

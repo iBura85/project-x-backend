@@ -36,6 +36,10 @@ export class UsersService {
     return this.usersRepo.findOne({ where: { phone } });
   }
 
+  public findById(id: string): Promise<User> {
+    return this.usersRepo.findOne(id);
+  }
+
   /**
    * Находит в БД один объект пользователя по значению в указнной колонке
    * @param column колонка для поиска

@@ -1,4 +1,4 @@
-import { SessionEntity } from '@modules/auth/sessions';
+import { UserRole } from '../types/user-role.type';
 
 export interface User {
   readonly id: string;
@@ -6,6 +6,7 @@ export interface User {
   readonly phone: string;
   readonly email: string;
   readonly password: string;
+  readonly role: UserRole;
   verify: boolean;
   readonly createdAt: Date;
   readonly updatedAt: Date;

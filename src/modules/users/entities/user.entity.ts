@@ -6,20 +6,17 @@ import {
   UpdateDateColumn,
   OneToMany,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { User } from '@modules/users/interfaces/user.interface';
-import { SessionEntity } from '@modules/auth/sessions';
+import { ClientEntity } from '@modules/clients';
+import { UserRole } from '../types/user-role.type';
 
 @Entity('users')
-@Unique('Phone', ['phone'])
+@Unique('PhoneAndEmail', ['phone', 'email'])
 export class UsersEntity implements User {
-  @PrimaryColumn({
-    name: 'id',
-    length: 80,
-    nullable: false,
-    default: () => 'gen_random_uuid()',
-  })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('varchar', {
@@ -37,6 +34,12 @@ export class UsersEntity implements User {
 
   @Column('varchar', {
     nullable: true,
+    default: 'user',
+  })
+  role: UserRole;
+
+  @Column('varchar', {
+    nullable: true,
   })
   password: string;
 
@@ -45,8 +48,8 @@ export class UsersEntity implements User {
   })
   verify: boolean;
 
-  @OneToMany(() => SessionEntity, session => session.user, { cascade: true })
-  sessions?: SessionEntity[];
+  @OneToMany(() => ClientEntity, session => session.user, { cascade: true })
+  sessions?: ClientEntity[];
 
   @CreateDateColumn()
   createdAt: Date;

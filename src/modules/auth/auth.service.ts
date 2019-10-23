@@ -8,7 +8,8 @@ import { Logger } from '@commons/logger/logger.decorator';
 import { UsersService } from '@modules/users/users.service';
 import { User } from '@modules/users/interfaces/user.interface';
 import { UserAgent } from '@commons/user-agent';
-import { LoginResult } from './interfaces';
+import { LoginResult, LoginRequest, AccessTokenObject } from './interfaces';
+import { ClientsService } from '@modules/clients/clients.service';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +17,7 @@ export class AuthService {
     @Logger('AuthService') private readonly logger: LoggerService,
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly clientsService: ClientsService,
   ) {}
 
   /**
@@ -79,17 +81,42 @@ export class AuthService {
    * Создает клиента и генерирует JWT токен для пользователя
    * @param user
    */
-  async login(user: User, userAgent: UserAgent): Promise<LoginResult> {
-    // необходимо создать новую сессию для пользователя
+  async login(loginRequest: LoginRequest): Promise<any> {
+    try {
+      const user = loginRequest.user;
 
+      const accessTokenObject = this.generateAccessTokenObject(user);
+      const refreshTokenObject = await this.clientsService.createClient(
+        loginRequest,
+      );
+
+      const result: LoginResult = {
+        ...accessTokenObject,
+        refresh_token: refreshTokenObject.refreshToken,
+      };
+
+      console.log(result);
+
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  private generateAccessTokenObject(user: User): AccessTokenObject {
+    //
     const payload = {
       sub: user.id,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
+      role: user.role,
     };
+
+    const token = this.jwtService.sign(payload);
+
+    const decodeToken = this.jwtService.decode(token);
+
     return {
-      access_token: this.jwtService.sign(payload),
-    } as LoginResult;
+      access_token: token,
+      expire_in: decodeToken['exp'],
+    };
   }
 }

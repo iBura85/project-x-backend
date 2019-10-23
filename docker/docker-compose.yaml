@@ -1,44 +1,44 @@
 version: '3'
 
 services:
-  mosquitto:
-    image: eclipse-mosquitto
-    hostname: mosquitto
-    container_name: mosquitto
-    expose:
-      - '1883'
-      - '9001'
+  # mosquitto:
+  #   image: eclipse-mosquitto
+  #   hostname: mosquitto
+  #   container_name: mosquitto
+  #   expose:
+  #     - '1883'
+  #     - '9001'
+  #   ports:
+  #     - '1883:1883'
+  #     - '9001:9001'
+  #   volumes:
+  #     - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  #     - ./mosquitto/data:/mosquitto/data
+  #     - ./mosquitto/log:/mosquitto/log
+  # nestjs:
+  #   build: .
+  #   container_name: projectx-backend
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - 3000:3000
+  #     - 9229:9229
+  #   links:
+  #     - postgres
+  #   command: npm run start:dev
+  # proxy:
+  #   container_name: tor-proxy
+  #   image: dperson/torproxy
+  #   ports:
+  #     - '8118:8118'
+  #     - '9050:9050'
+  postgres:
+    container_name: projectx-db
+    build: ./postgres
     ports:
-      - '1883:1883'
-      - '9001:9001'
-    volumes:
-      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ./mosquitto/data:/mosquitto/data
-      - ./mosquitto/log:/mosquitto/log
-    # nestjs:
-    #   build: .
-    #   container_name: projectx-backend
-    #   volumes:
-    #     - .:/app
-    #     - /app/node_modules
-    #   ports:
-    #     - 3000:3000
-    #     - 9229:9229
-    #   links:
-    #     - postgres
-    #   command: npm run start:dev
-    # proxy:
-    #   container_name: tor-proxy
-    #   image: dperson/torproxy
-    #   ports:
-    #     - '8118:8118'
-    #     - '9050:9050'
-    # postgres:
-    #   container_name: projectx-db
-    #   image: postgres:10-alpine
-    #   ports:
-    #     - '5531:5432'
-    #   environment:
-    #     - POSTGRES_USER=root
-    #     - POSTGRES_PASSWORD=toor
-    #     - POSTGRES_DB=projectx
+      - '5531:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=toor
+      - POSTGRES_DB=projectx
