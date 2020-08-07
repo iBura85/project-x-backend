@@ -33,7 +33,7 @@
     "@types/ua-parser-js": "^0.7.33",
     "async-mqtt": "^2.4.2",
     "bcryptjs": "^2.4.3",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.10.0",
     "express-useragent": "^1.0.13",
     "fastify-swagger": "^2.4.0",
