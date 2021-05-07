@@ -51,7 +51,7 @@
     "rxjs": "^6.3.3",
     "typeorm": "^0.2.19",
     "typeorm-seeding": "^1.0.0-rc.3",
-    "ua-parser-js": "^0.7.20"
+    "ua-parser-js": "^0.7.24"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",
