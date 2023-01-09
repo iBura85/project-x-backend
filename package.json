@@ -37,7 +37,7 @@
     "class-validator": "^0.10.0",
     "express-useragent": "^1.0.13",
     "fastify-swagger": "^2.4.0",
-    "luxon": "^1.19.3",
+    "luxon": "^2.5.2",
     "module-alias": "^2.2.1",
     "mqtt": "^3.0.0",
     "node-telegram-bot-api": "^0.30.0",
